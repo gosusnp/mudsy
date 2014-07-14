@@ -8,12 +8,20 @@ module.exports = function(grunt) {
             all: [
                 'Gruntfile.js',
                 'bin/*.js',
+                'client/assets/js/*.js',
                 'lib/**/*.js',
                 'spec/**/*.js'
             ]
         },
 
         run: {
+            testserver: {
+                cmd: 'nodemon',
+                args: [
+                    '--debug',
+                    'bin/webapp.js',
+                ],
+            },
             test: {
                 cmd: 'jasmine-node',
                 args: [

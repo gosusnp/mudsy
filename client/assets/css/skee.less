@@ -1,0 +1,626 @@
+//
+//
+//
+//
+
+//////////////////////////////////////////////////////////////////////////////
+// Dimensions
+@small-screen-height: 300px;
+@small-screen-width: 700px;
+@big-screen-width: 1100px;
+@navbar-height: 40px;
+
+// Font
+@font-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-serif: Georgia, "Times New Roman", Times, serif;
+@font-size: 14px;
+@h1-size: @font-size * 1.25;
+@h2-size: @font-size * 1.2;
+@h3-size: @font-size * 1.1;
+@h4-size: @font-size;
+@h5-size: @font-size * 0.95;
+@h6-size: @font-size * 0.9;
+
+// Spacers
+@line-height: @font-size * 1.35;
+@vspace: @font-size / 3;
+@hspace: 6px;
+
+//
+@button-rounded-corners: 8px;
+
+// Colors
+@separator: #D0D0D0;
+@foreground: #404040;
+@background-highlight: #F0F0F0;
+//@link: #0099FF;
+@link: #4080DD;
+//@foreground-highlight: #0099FF;
+@info-info: #4080DD;
+@info-warning: yellow;
+@info-error: red;
+@info-success: #00B200;
+
+@info: #4080DD;
+
+@navbar-foreground: #909090;
+@navbar-link: #909090;
+@navbar-link-highlight: #707070;
+@navbar-background: #F0F0F0;
+@navbar-background-highlight: #D0D0D0;
+
+//////////////////////////////////////////////////////////////////////////////
+// Utils
+
+// Use border-box instead of content-box
+* {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box
+}
+
+.maximize() {
+    margin: 0;
+    padding: 0;
+}
+.clickable {
+    cursor: pointer;
+}
+.favicon {
+    border: 0;
+    height: 14px;
+    width: 14px;
+    vertical-align: top;
+}
+.pull-left {
+    float: left !important;
+}
+.pull-right {
+    float: right !important;
+}
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-sc {
+    font-variant: small-caps;
+}
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix() {
+    &:before,
+    &:after {
+        content: " "; // 1
+        display: table; // 2
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+body {
+    .maximize();
+    padding-top: @navbar-height;
+    color: @foreground;
+    font-family: @font-sans-serif;
+    font-size: @font-size;
+    line-height: @line-height;
+}
+
+hr {
+    padding: 0;
+    margin: (@vspace * 2) 0 @vspace 0;
+    border: 0;
+    border-top: 1px solid @separator;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+h1 { font-size: @h1-size; padding-top: @h1-size * 0.7; padding-bottom: @h1-size / 2; }
+h2 { font-size: @h2-size; padding-top: @h2-size * 0.7; padding-bottom: @h2-size / 2;  }
+h3 { font-size: @h3-size; padding-top: @h3-size * 0.7; padding-bottom: @h3-size / 2;  }
+h4 { font-size: @h4-size; padding-top: @h4-size * 0.7; padding-bottom: @h4-size / 2;  }
+h5 { font-size: @h5-size; padding-top: @h5-size * 0.7; padding-bottom: @h5-size / 2;  }
+h6 { font-size: @h6-size; padding-top: @h6-size * 0.7; padding-bottom: @h6-size / 2;  }
+
+p {
+    .maximize();
+}
+
+a {
+    color: @link;
+    text-decoration: none;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Forms
+.form {
+    .row {
+        padding: 5px 0px;
+    }
+    label {
+        //padding-top: @line-height * 1.3 - @font-size;
+        line-height: @line-height * 1.3;
+        &.form-right {
+            .text-right;
+            padding-right: @hspace;
+        }
+    }
+    input {
+        .rounded-corners(@button-rounded-corners);
+        padding: 1px 6px;
+        height: @line-height * 1.3;
+        border: 1px solid @separator;
+
+        &:focus, &:hover {
+            padding: 0 5px;
+            border: 2px solid lighten(@link, 30%);
+            outline: none;
+        }
+    }
+    button {
+        .rounded-corners(@button-rounded-corners);
+        height: @line-height * 1.3;
+        border: 1px solid darken(@separator, 30%);
+        background: darken(@background-highlight, 20%);
+
+        &:disabled {
+            color: lighten(@foreground, 20%) !important;
+            background: darken(@background-highlight, 10%) !important;
+            border: 1px solid darken(@separator, 30%) !important;
+        }
+        &:focus, &:hover {
+            border: 2px solid lighten(@link, 30%);
+            background: @background-highlight;
+            outline: none;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        line-height: @line-height * 1.3;
+        list-style-type: none;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Breadcrumbs
+ul.breadcrumbs {
+    .maximize();
+    span.divider {
+        .maximize();
+    }
+    li {
+        .maximize();
+        display: inline-block;
+        list-style-type: none;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Infobox
+.info {
+    span& {
+    .rounded-corners(@button-rounded-corners);
+    display: inline-block;
+    padding: @line-height * 0.1 @hspace @line-height * 0.2 @hspace;
+    }
+
+    .info-color(@info-color) {
+        background: lighten(@info-color, 40%);
+        border: 1px solid @info-color;
+        color: darken(@info-color, 15%);
+    }
+    &.info-info { .info-color(@info-info); }
+    &.info-warning { .info-color(@info-warning); }
+    &.info-error { .info-color(@info-error); }
+    &.info-success { .info-color(@info-success); }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Tables
+table.table {
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+
+    th {
+        border-bottom: 1px solid darken(@separator, 30%);
+    }
+    td {
+        border-top: 1px solid @separator;
+    }
+    tr {
+        &:nth-child(odd) {
+            background: lighten(@background-highlight, 5%);
+        }
+        &:hover {
+            background: @background-highlight;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// AppMenu
+@media(max-width: @small-screen-width) {
+    .app-menu {
+        background: lighten(@navbar-background, 2.5%);
+        position: fixed !important;
+        top: @navbar-height;
+        z-index: 2;
+        width: 90%;
+        padding: 0;
+        min-height: 1300px;
+        height: 1300px;
+
+        border-right: 5px solid @navbar-background-highlight;
+
+        &.app-menu-collapsed {
+            position: relative;
+            left: -89%;
+        }
+        &.app-menu-collapsed-add,
+        &.app-menu-collapsed-remove {
+            -webkit-transition:0.5s linear all;
+            -moz-transition:0.5s linear all;
+            -o-transition:0.5s linear all;
+            transition:0.5s linear all;
+        }
+        &.app-menu-collapsed-remove.app-menu-collapsed-remove-active {
+            left: 0%;
+        }
+        &.app-menu-collapsed-add.app-menu-collapsed-add-active {
+            left: -89%;
+        }
+    }
+    @media(max-height: @small-screen-height) {
+        .app-menu {
+            top: 0;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// NavBar
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: @navbar-height;
+    min-height: @navbar-height;
+    background: @navbar-background;
+    color: @navbar-foreground;
+    font-size: @h3-size;
+    font-family: @font-sans-serif;
+    .clearfix();
+
+    //border-bottom-style: solid;
+    border-bottom: 1px solid @navbar-background-highlight;
+
+    ul {
+        .maximize();
+        display: inline-block;
+    }
+
+    li {
+        .maximize();
+        display: inline-table;
+        height: @navbar-height;
+    }
+
+    a {
+        .rounded-corners(@hspace / 2);
+        margin: 0;
+        padding: 0 (@hspace * 2);
+        text-decoration: none;
+        display: table-cell;
+        vertical-align: middle;
+        height: @navbar-height;
+
+        &:link, &:visited, &:active {
+            color: @navbar-link;
+        }
+        &:hover {
+            color: @navbar-link-highlight;
+            background: @navbar-background-highlight;
+        }
+    }
+}
+@media(max-height: @small-screen-height) {
+    .navbar {
+        position: relative;
+    }
+    body {
+        padding-top: 0;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Grid
+.container {
+    position: relative;
+    margin: 0;
+    .clearfix();
+}
+.row {
+    .maximize();
+    width: 100%;
+    .clearfix();
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+    min-height: 1px;
+    position: relative;
+    float: left;
+}
+// on small devices
+@media (max-width: @small-screen-width) {
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 {
+        padding: 0 @hspace;
+        float: none;
+    }
+    .container {
+        padding: 0 (@hspace * 2);
+        width: 100%;
+    }
+}
+// on other devices
+@media (min-width: @small-screen-width) {
+    .col-1 { width: percentage(1 / 12); }
+    .col-2 { width: percentage(2 / 12); }
+    .col-3 { width: percentage(3 / 12); }
+    .col-4 { width: percentage(4 / 12); }
+    .col-5 { width: percentage(5 / 12); }
+    .col-6 { width: percentage(6 / 12); }
+    .col-7 { width: percentage(7 / 12); }
+    .col-8 { width: percentage(8 / 12); }
+    .col-9 { width: percentage(9 / 12); }
+    .col-10 { width: percentage(10 / 12); }
+    .col-11 { width: percentage(11 / 12); }
+    .col-12 { width: 100%; }
+    .container {
+        padding: 0 (@hspace * 2);
+    }
+    .offset-1 { margin-left: percentage(1 / 12); }
+    .offset-2 { margin-left: percentage(2 / 12); }
+    .offset-3 { margin-left: percentage(3 / 12); }
+    .offset-4 { margin-left: percentage(4 / 12); }
+    .offset-5 { margin-left: percentage(5 / 12); }
+    .offset-6 { margin-left: percentage(6 / 12); }
+    .offset-7 { margin-left: percentage(7 / 12); }
+    .offset-8 { margin-left: percentage(8 / 12); }
+    .offset-9 { margin-left: percentage(9 / 12); }
+    .offset-10 { margin-left: percentage(10 / 12); }
+    .offset-11 { margin-left: percentage(11 / 12); }
+    .offset-12 { margin-left: 100%; }
+}
+@media (min-width: @big-screen-width) {
+    .centered-app {
+        width: @big-screen-width;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Nav
+ul.nav {
+    .maximize();
+    list-style: none;
+
+    li {
+        .maximize();
+    }
+
+    a {
+        padding: 0px @vspace;
+        text-decoration: none;
+        &:link, &:visited, &:active {
+            color: @link;
+        }
+        &:hover {
+            .rounded-corners(@vspace);
+            background: @background-highlight;
+        }
+    }
+}
+ul.nav-block {
+    a {
+        padding: @hspace @vspace;
+        display: block;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// News
+.news-header {
+    .text-sc;
+    color: @navbar-foreground;
+    font-size: @h6-size;
+    font-weight: bold;
+
+    img {
+        .favicon;
+    }
+}
+
+.news-skee-more {
+    font-size: @h5-size;
+    a {
+        &:link, &:visited, &:active {
+            color: lighten(@foreground, 20%) !important;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Label
+.label {
+    .rounded-corners(@hspace / 2);
+    font-weight: bold;
+    //font-size: @h6-size;
+    padding: 0 @hspace;
+    display: inline-block;
+    color: #F0F0F0;
+    background: @info;
+}
+
+hr.vspace {
+    border: 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Animations
+.fade.ng-enter,
+.fade.ng-leave {
+    -webkit-transition:0.5s linear all;
+    -moz-transition:0.5s linear all;
+    -o-transition:0.5s linear all;
+    transition:0.5s linear all;
+}
+.fade.ng-enter,
+.fade.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+.fade.ng-enter.ng-enter-active,
+.fade.ng-leave {
+    opacity: 1;
+}
+
+.collapse.ng-enter,
+.collapse.ng-leave {
+    -webkit-transition:0.5s linear all;
+    -moz-transition:0.5s linear all;
+    -o-transition:0.5s linear all;
+    transition:0.5s linear all;
+    overflow: hidden !important;
+}
+.collapse.ng-enter,
+.collapse.ng-leave.ng-leave-active {
+    max-height: 0px;
+}
+.collapse.ng-enter.ng-enter-active,
+.collapse.ng-leave {
+    max-height: 300px;
+}
+
+.spinner {
+    -webkit-animation: rotation 1.5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(359deg);}
+}
+
+.external {
+    * {
+        max-width: 100%;
+    }
+}
+
+//
+.columns
+.columns-2,
+.columns-3,
+.columns-4,
+.columns-5
+{
+    .clearfix();
+    -webkit-column-gap: 5px;
+    -webkit-column-fill: auto;
+    -moz-column-gap: 5px;
+    -moz-column-fill: auto;
+    column-gap: 5px;
+    column-fill: auto;
+}
+.columns-2 {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+.columns-3 {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+}
+.columns-4 {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+}
+.columns-5 {
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+}
+.item {
+    .maximize();
+    width: 100%;
+
+    display: inline-block;
+    margin: 5px 3px;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    padding: 10px;
+    padding-top: 5px;
+
+    .rounded-corners(@button-rounded-corners);
+    border: 1px solid @separator;
+    background: lighten(@navbar-background, 4%);
+}
