@@ -1,0 +1,32 @@
+<div class="centered-app">
+    <div class="container">
+        <div class="row">
+            <br />
+            <form class="form" ng-submit="search()">
+                <input class="offset-1 col-10" ng-model="query"></input>
+            </form>
+            <br />
+            <br />
+        </div>
+        <div class="row">
+            <h2>
+                Similar artists
+                <span ng-if="fetching">
+                    <span class="spinner"><i class="fa fa-spinner"></i></span>
+                </span>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="container columns-3">
+                <div class="container fade" ng-repeat="artist in similar">
+                    <div class="item">
+                        <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
+                        <div class="text-center">
+                            <span ng-repeat="a in artist"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

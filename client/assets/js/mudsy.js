@@ -1,31 +1,71 @@
 (function() {
     "use strict";
 
-    var app = angular.module('mudsy', ['ngAnimate']);
+    var app = angular.module('mudsy', [
+        'ngAnimate',
+        'ui.router'
+    ]);
 
-    app.controller('MudsyCtrl', [
-        '$scope',
+    app.factory('Mudsy', [
         '$http',
-        function($scope, $http) {
-            $scope.query = 'the glitch mob';
-            $scope.similar = null;
+        '$q',
+        function($http, $q) {
+            var Mudsy = {}
+            Mudsy.searchSimilar = function(query) {
+                var deferred = $q.defer();
 
-            $scope.search = function(query) {
-                if (query) {
-                    $scope.query = query;
-                }
-                $scope.fetching = true;
-                $http.get('/api/artists/similar?q=' + $scope.query.replace(/ +/g, ' '))
+                $http.get('/api/artists/similar?q=' + query.replace(/ +/g, '+'))
                 .success(function(data) {
-                    $scope.similar = data;
-                    $scope.fetching = false;
-                    console.log(data);
+                    deferred.resolve(data);
                 })
                 .error(function(err) {
+                    deferred.reject(err);
+                });
+
+                return deferred.promise;
+            };
+            return Mudsy;
+        }
+    ]);
+
+    app.controller('MudsyArtistsCtrl', [
+        '$scope',
+        '$state',
+        'Mudsy',
+        function($scope, $state, Mudsy) {
+            if ($state.params.name) {
+                $scope.query = $state.params.name;
+                $scope.fetching = true;
+                Mudsy.searchSimilar($state.params.name)
+                .then(function(data) {
+                    $scope.fetching = false;
+                    $scope.similar = data;
+                }, function(error) {
                     $scope.fetching = false;
                     $scope.similar = null;
                 });
-            };
+            }
+            $scope.search = function(query) {
+                query = query || $scope.query;
+                $state.go('mudsy.artists', {name: query}, {reload: true});
+            }
         }
     ]);
+
+    app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/mudsy/artists/');
+
+        $stateProvider
+        .state('mudsy', {
+            url: '/mudsy',
+            template: '<div ui-view></div>',
+            abstract: true
+        })
+        .state('mudsy.artists', {
+            url: '/artists/:name',
+            controller: 'MudsyArtistsCtrl',
+            templateUrl: '/assets/views/mudsy.html'
+        })
+        ;
+    }]);
 }());

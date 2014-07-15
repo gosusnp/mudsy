@@ -6,6 +6,7 @@
         <link href="/assets/vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
         <script src="/assets/vendor/angular/angular.min.js"></script>
         <script src="/assets/vendor/angular-animate/angular-animate.min.js"></script>
+        <script src="/assets/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="/assets/js/mudsy.js"></script>
     </meta>
     <body ng-app="mudsy">
@@ -16,39 +17,6 @@
                 </ul>
             </div>
         </div>
-        <div>
-            <div class="centered-app" ng-controller="MudsyCtrl">
-                <div class="container">
-                    <div class="row">
-                        <br />
-                        <form class="form" ng-submit="search()">
-                            <input class="offset-1 col-10" ng-model="query"></input>
-                        </form>
-                        <br />
-                        <br />
-                    </div>
-                    <div ng-if="fetching" class="row text-center fade">
-                        <div class="spinner" style="font-size: 80px">
-                            <i class="fa fa-spinner"></i>
-                        </div>
-                    </div>
-                    <div ng-if="!fetching && similar" class="row columns-3 fade">
-                        <div class="container" ng-repeat="artist in similar">
-                            <div class="item">
-                                <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
-                                    <ul>
-                                        <li ng-repeat="a in artist">
-                                            <a ng-href="{{a.link}}">{{a.source}}</a>
-                                        </li>
-                                    </ul>
-                                <div class="text-center">
-                                    <span ng-repeat="a in artist"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div ui-view></div>
     </body>
 </html>
