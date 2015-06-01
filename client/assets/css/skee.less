@@ -272,46 +272,6 @@ table.table {
 }
 
 //////////////////////////////////////////////////////////////////////////////
-// AppMenu
-@media(max-width: @small-screen-width) {
-    .app-menu {
-        background: lighten(@navbar-background, 2.5%);
-        position: fixed !important;
-        top: @navbar-height;
-        z-index: 2;
-        width: 90%;
-        padding: 0;
-        min-height: 1300px;
-        height: 1300px;
-
-        border-right: 5px solid @navbar-background-highlight;
-
-        &.app-menu-collapsed {
-            position: relative;
-            left: -89%;
-        }
-        &.app-menu-collapsed-add,
-        &.app-menu-collapsed-remove {
-            -webkit-transition:0.5s linear all;
-            -moz-transition:0.5s linear all;
-            -o-transition:0.5s linear all;
-            transition:0.5s linear all;
-        }
-        &.app-menu-collapsed-remove.app-menu-collapsed-remove-active {
-            left: 0%;
-        }
-        &.app-menu-collapsed-add.app-menu-collapsed-add-active {
-            left: -89%;
-        }
-    }
-    @media(max-height: @small-screen-height) {
-        .app-menu {
-            top: 0;
-        }
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////
 // NavBar
 .navbar {
     position: fixed;
@@ -485,45 +445,7 @@ ul.nav-block {
     }
 }
 
-//////////////////////////////////////////////////////////////////////////////
-// News
-.news-header {
-    .text-sc;
-    color: @navbar-foreground;
-    font-size: @h6-size;
-    font-weight: bold;
-
-    img {
-        .favicon;
-    }
-}
-
-.news-skee-more {
-    font-size: @h5-size;
-    a {
-        &:link, &:visited, &:active {
-            color: lighten(@foreground, 20%) !important;
-        }
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////
-// Label
-.label {
-    .rounded-corners(@hspace / 2);
-    font-weight: bold;
-    //font-size: @h6-size;
-    padding: 0 @hspace;
-    display: inline-block;
-    color: #F0F0F0;
-    background: @info;
-}
-
-hr.vspace {
-    border: 0;
-}
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 // Animations
 .fade.ng-enter,
 .fade.ng-leave {
