@@ -27,7 +27,7 @@
                     <div class="item">
                         <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
                         <div class="text-center">
-                            <span ng-repeat="a in artist"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
+                            <span ng-repeat="a in artist | limitTo:2"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
                         </div>
                     </div>
                 </div>

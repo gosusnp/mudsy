@@ -587,27 +587,26 @@ hr.vspace {
     -moz-column-fill: auto;
     column-gap: 5px;
     column-fill: auto;
+    .container {
+        display: inline-block;
+    }
 }
 .columns-2 {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
+    .container {
+        &:extend(.col-6);
+    }
 }
 .columns-3 {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
+    .container {
+        &:extend(.col-4);
+    }
 }
 .columns-4 {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
+    .container {
+        &:extend(.col-3);
+    }
 }
-.columns-5 {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5;
-}
+
 .item {
     .maximize();
     width: 100%;
