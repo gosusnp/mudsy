@@ -12,28 +12,40 @@
             <div class="text-center">
                 <div id="player"></div>
             </div>
+            <br />
+            <br />
         </div>
+
         <div class="row">
-            <h2>
-                Similar artists
-                <span ng-if="fetching">
-                    <span class="spinner"><i class="fa fa-spinner"></i></span>
-                </span>
-            </h2>
-        </div>
-        <div class="row">
-            <div class="container columns-3">
-                <div class="container fade" ng-repeat="artist in similar">
-                    <div class="item">
-                        <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
-                        <div class="text-center">
-                            <span ng-repeat="a in artist | limitTo:2"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
+            <div class="tab">
+                <div class="tab-nav">
+                    <ul>
+                        <li class="active"><a href="">Similar Artists</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <br />
+                    <div class="container text-center">
+                        <span ng-if="fetching">
+                            <span class="spinner" style="font-size: 300%"><i class="fa fa-spinner"></i></span>
+                        </span>
+                    </div>
+                    <div class="container columns-3">
+                        <div class="container fade" ng-repeat="artist in similar">
+                            <div class="item">
+                                <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
+                                <div class="text-center">
+                                    <span ng-repeat="a in artist | limitTo:2"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <br />
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

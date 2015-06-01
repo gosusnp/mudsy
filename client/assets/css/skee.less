@@ -32,6 +32,7 @@
 // Colors
 @separator: #D0D0D0;
 @foreground: #404040;
+@background: #FFFFFF;
 @background-highlight: #F0F0F0;
 //@link: #0099FF;
 @link: #4080DD;
@@ -47,7 +48,7 @@
 @navbar-link: #909090;
 @navbar-link-highlight: #707070;
 @navbar-background: #F0F0F0;
-@navbar-background-highlight: #D0D0D0;
+@navbar-background-highlight: #E0E0E0;
 
 //////////////////////////////////////////////////////////////////////////////
 // Utils
@@ -324,6 +325,70 @@ table.table {
     }
     body {
         padding-top: 0;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Tab
+.tab {
+    .tab-nav {
+        ul {
+            .maximize();
+            display: inline-block;
+            width: 100%;
+            border-bottom: 1px solid @separator;
+        }
+
+        li {
+            .maximize();
+
+            -webkit-border-top-left-radius: @button-rounded-corners;
+            -moz-border-top-left-radius: @button-rounded-corners;
+            -ms-border-top-left-radius: @button-rounded-corners;
+            -o-border-top-left-radius: @button-rounded-corners;
+            border-top-left-radius: @button-rounded-corners;
+            -webkit-border-top-right-radius: @button-rounded-corners;
+            -moz-border-top-right-radius: @button-rounded-corners;
+            -ms-border-top-right-radius: @button-rounded-corners;
+            -o-border-top-right-radius: @button-rounded-corners;
+            border-top-right-radius: @button-rounded-corners;
+
+            display: inline-table;
+            padding: @vspace*2 @hspace*2 @vspace*2 @hspace*2;
+
+            &:link, &:visited, &:active {
+                color: @navbar-link;
+            }
+            &:hover {
+                color: @navbar-link-highlight;
+                background: @navbar-background-highlight;
+            }
+        }
+
+        li:not(.active) {
+            border-bottom: 1px solid @separator;
+        }
+
+        li.active {
+            border: 1px solid @separator;
+            border-bottom: 1px solid @background;
+        }
+    }
+
+    .tab-content {
+        border: 1px solid @separator;
+        border-top: none;
+
+        -webkit-border-bottom-left-radius: @button-rounded-corners;
+        -moz-border-bottom-left-radius: @button-rounded-corners;
+        -ms-border-bottom-left-radius: @button-rounded-corners;
+        -o-border-bottom-left-radius: @button-rounded-corners;
+        border-bottom-left-radius: @button-rounded-corners;
+        -webkit-border-bottom-right-radius: @button-rounded-corners;
+        -moz-border-bottom-right-radius: @button-rounded-corners;
+        -ms-border-bottom-right-radius: @button-rounded-corners;
+        -o-border-bottom-right-radius: @button-rounded-corners;
+        border-bottom-right-radius: @button-rounded-corners;
     }
 }
 
