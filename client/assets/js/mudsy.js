@@ -65,6 +65,31 @@
                 $state.go('mudsy.artists', {name: query}, {reload: true});
             };
 
+            $scope.peek = function(index) {
+                var element = $scope.similar[index];
+                if (element.showSimilar) {
+                    element.showSimilar = false;
+                } else {
+                    if (!element.similar) {
+                        element.fetching = true;
+                        var artistName = element.sources[0].name;
+                        Mudsy.searchSimilar(artistName)
+                        .then(function(data) {
+                            var similar = [];
+                            for (var i = 0; i < data.length; ++i) {
+                                similar.push({sources: data[i]});
+                            }
+                            element.similar = similar;
+                            element.fetching = false;
+                        }, function(error) {
+                            element.showSimilar = false;
+                            element.fetching = false;
+                        });
+                    }
+                    element.showSimilar = true;
+                }
+            };
+
             if ($state.params.name) {
                 $scope.loadPlayer();
                 $scope.query = $state.params.name;
@@ -72,7 +97,11 @@
                 Mudsy.searchSimilar($state.params.name)
                 .then(function(data) {
                     $scope.fetching = false;
-                    $scope.similar = data;
+                    var similar = [];
+                    for (var i = 0; i < data.length; ++i) {
+                        similar.push({sources: data[i]});
+                    }
+                    $scope.similar = similar;
                 }, function(error) {
                     $scope.fetching = false;
                     $scope.similar = null;

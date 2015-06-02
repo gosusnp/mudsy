@@ -92,6 +92,17 @@
     font-variant: small-caps;
 }
 
+.color-sep {
+    color: @separator;
+}
+.color-fg {
+    color: @foreground;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 .rounded-corners (@radius: 5px) {
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
@@ -158,6 +169,10 @@ p {
 a {
     color: @link;
     text-decoration: none;
+}
+
+li.nobullet {
+    list-style-type: none;
 }
 
 //////////////////////////////////////////////////////////////////////////////

@@ -33,9 +33,27 @@
                     <div class="container columns-3">
                         <div class="container fade" ng-repeat="artist in similar">
                             <div class="item">
-                                <h3><a class="clickable" ng-click="search(artist[0].name)">{{artist[0].name}}</a></h3>
-                                <div class="text-center">
-                                    <span ng-repeat="a in artist | limitTo:2"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
+                                <h3>
+                                    <a class="clickable" ng-click="search(artist.sources[0].name)">{{artist.sources[0].name}}</a>
+                                    <span class="pull-right clickable" ng-class="artist.showSimilar && 'color-fg' || 'color-sep'" ng-click="peek($index)"><i class="fa fa-link"></i></span>
+                                </h3>
+                                <div ng-show="artist.showSimilar" style="position: absolute; z-index: 1000">
+                                    <div ng-if="artist.fetching">
+                                        <p class="text-center">
+                                            <span class="spinner" style="font-size: 300%"><i class="fa fa-spinner"></i></span>
+                                        </p>
+                                    </div>
+                                    <div ng-if="!artist.fetching">
+                                        <h4>Similar artists</h4>
+                                        <ul ng-if="artist.showSimilar">
+                                            <li class="nobullet" ng-repeat="a in artist.similar | limitTo:6">
+                                                <a class="clickable" ng-click="search(a.sources[0].name)">{{a.sources[0].name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="text-center" ng-class="artist.showSimilar && 'hidden'">
+                                    <span ng-repeat="a in artist.sources | limitTo:2"><img height="160" ng-show="a.img" ng-src="{{a.img}}"></img></span>
                                 </div>
                             </div>
                         </div>
