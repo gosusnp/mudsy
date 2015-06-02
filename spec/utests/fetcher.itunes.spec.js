@@ -2,6 +2,9 @@
     "use strict";
 
     var urlFileMapping = {
+        'https://itunes.apple.com/search/?media=music&entity=musicArtist&term=fail': {
+            file: 'allmusic.glitchmob.artist.html'
+        },
         'https://itunes.apple.com/search/?media=music&entity=musicArtist&term=the+glitch+mob': {
             file: 'itunes.glitchmob.similar.html'
         },
@@ -27,6 +30,14 @@
                     expect(similarArtist.score).toBeDefined();
                     expect(similarArtist.source).toBeDefined();
                 }
+                done();
+            });
+        });
+
+        it("does not crash when fetching invalid data", function(done) {
+            itunesFetcher.fetchSimilar('fail', function(err, data) {
+                expect(err).not.toBe(null);
+                expect(data).toBe(null);
                 done();
             });
         });
