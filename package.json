@@ -6,6 +6,7 @@
         "express": "~4.6.1",
         "less-middleware": "~1.0.3",
         "morgan": "~1.1.1",
+        "node-cache": "~3.0.0",
         "request": "~2.37.0"
     },
     "devDependencies": {

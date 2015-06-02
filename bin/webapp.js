@@ -4,7 +4,9 @@
     var express = require('express'),
         lessMiddleware = require('less-middleware'),
         morgan = require('morgan'),
-        mudsy = require('../lib/mudsy')();
+        request = require('request'),
+        cachedRequest = require('../lib/cached-request')(request),
+        mudsy = require('../lib/mudsy')(cachedRequest);
 
     var app = express();
 
