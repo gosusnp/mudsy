@@ -20,8 +20,8 @@
         }
     });
 
-    app.use('/assets/css', lessMiddleware(__dirname + '../../client/assets/css'));
-    app.use('/', express.static(__dirname + '../../client'));
+    app.use('/assets/css', lessMiddleware(__dirname + '/../client/assets/css'));
+    app.use('/', express.static(__dirname + '/../client'));
 
     app.listen(3000);
 }());
