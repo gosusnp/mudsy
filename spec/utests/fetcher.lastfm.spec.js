@@ -16,14 +16,13 @@
             lastFmFetcher.fetchSimilar('the glitch mob', function(err, data) {
                 expect(err).toBe(null);
 
-                expect(data.length).toBe(15);
+                expect(data.length).toBe(19);
                 for (var i in data) {
                     var similarArtist = data[i];
                     expect(similarArtist.name).toBeDefined();
                     expect(similarArtist.link).toBeDefined();
                     expect(similarArtist.abstract).toBeDefined();
                     expect(similarArtist.img).toBeDefined();
-                    expect(similarArtist.score).toBeDefined();
                     expect(similarArtist.source).toBeDefined();
                 }
                 done();
