@@ -35,7 +35,10 @@
                             <div class="item">
                                 <h3>
                                     <a class="clickable" ng-click="search(artist.sources[0].name)">{{artist.sources[0].name}}</a>
-                                    <span class="pull-right clickable" ng-class="artist.showSimilar && 'color-fg' || 'color-sep'" ng-click="peek($index)"><i class="fa fa-link"></i></span>
+                                    <span class="pull-right">
+                                        <span class="clickable" ng-class="artist.showSimilar && 'color-fg' || 'color-sep'" ng-click="peek($index)"><i class="fa fa-link"></i></span>
+                                        {{artist.sources.length}}
+                                    </span>
                                 </h3>
                                 <div ng-show="artist.showSimilar" style="position: absolute; z-index: 1000">
                                     <div ng-if="artist.fetching">
