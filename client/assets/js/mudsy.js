@@ -99,7 +99,14 @@
                     $scope.fetching = false;
                     var similar = [];
                     for (var i = 0; i < data.length; ++i) {
-                        similar.push({sources: data[i]});
+                        var artistSources = data[i];
+                        var images = [];
+                        for (var j = 0; j < artistSources.length; ++j) {
+                            if (artistSources[j].img) {
+                                images.push(artistSources[j].img);
+                            }
+                        }
+                        similar.push({images: images, sources: artistSources});
                     }
                     $scope.similar = similar;
                 }, function(error) {

@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center" ng-class="artist.showSimilar && 'hidden'">
-                                    <span ng-repeat="a in artist.sources | limitTo:2"><img ng-show="a.img" ng-src="{{a.img}}"></img></span>
+                                    <span ng-repeat="image in artist.images | limitTo:2"><img ng-src="{{image}}"></img></span>
                                 </div>
                             </div>
                         </div>
