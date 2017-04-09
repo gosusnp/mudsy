@@ -2,7 +2,7 @@
     "use strict";
 
     var urlFileMapping = {
-        'http://www.jango.com/music/the+glitch+mob&c=1': {
+        'http://www.jango.com/music/the+glitch+mob': {
             file: 'jango.glitchmob.artist.html'
         },
     };
@@ -21,7 +21,6 @@
                     var similarArtist = data[i];
                     expect(similarArtist.name).toBeDefined();
                     expect(similarArtist.link).toBeDefined();
-                    expect(similarArtist.img).toBeDefined();
                     expect(similarArtist.source).toBeDefined();
                 }
                 done();
