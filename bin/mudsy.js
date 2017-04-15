@@ -1,8 +1,7 @@
 (function() {
     "use strict";
 
-    var mudsy = require('../lib/mudsy')(),
-        mr = require('../lib/mr')();
+    var mudsy = require('../lib/mudsy')();
 
     var search = process.argv.slice(2).join(' ');
     if (!search.length) {
